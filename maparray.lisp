@@ -1,3 +1,9 @@
+(defun call-gc ()
+  #+sbcl(sb-ext:gc :full t)
+;;  #+clisp(gc) ;; for CLISP, this is too hard!
+)
+
+;; ----------------- array ---------------------
 (defmacro mem-array (size &optional origin offset)
   `(make-array ,size
                :element-type '(unsigned-byte 32)
@@ -109,29 +115,29 @@
       (setf (aref a i) (mod i 4)))
     (mem-array 20 a 562)))
 
-(sb-ext:gc :full t)
+(call-gc)
 (format t "~%~%(time (map-array-displace))~%")
 (princ (time (map-array-displace)))
 
-(sb-ext:gc :full t)
+(call-gc)
 (format t "~%~%(time (map-array-cons))~%")
 (princ (time (map-array-cons)))
 
-(sb-ext:gc :full t)
+(call-gc)
 (format t "~%~%(time (map-array-struct-alloc))~%")
 (princ (time (map-array-struct-alloc)))
 
-(sb-ext:gc :full t)
+(call-gc)
 (format t "~%~%(time (map-array-struct-setf))~%")
 (princ (time (map-array-struct-setf)))
 
-(sb-ext:gc :full t)
+(call-gc)
 (format t "~%~%(time (map-array-macro))~%")
 (princ (time (map-array-macro)))
 
-(sb-ext:gc :full t)
+(call-gc)
 (format t "~%~%(time (map-array-offset))~%")
 (princ (time (map-array-offset)))
 
 (if (not (find-package :swank))
-    (sb-ext:exit))
+    (exit))
