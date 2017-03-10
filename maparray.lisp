@@ -1,7 +1,13 @@
 (defun call-gc ()
   #+sbcl(sb-ext:gc :full t)
-;;  #+clisp(gc) ;; for CLISP, this is too hard!
+  #+clisp(gc) ;; for CLISP, this is too hard!
+  #+ecl(gc)
 )
+
+(defun call-exit ()
+  #+sbcl (sb-ext:exit)
+  #+clisp (exit)
+  #+ecl (si:quit))
 
 ;; ----------------- array ---------------------
 (defmacro mem-array (size &optional origin offset)
@@ -140,4 +146,4 @@
 (princ (time (map-array-offset)))
 
 (if (not (find-package :swank))
-    (exit))
+    (call-exit))

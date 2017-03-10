@@ -1,0 +1,44 @@
+;;; Loading "/home/leo/learning/arraymap/maparray.lisp"
+
+
+(time (map-array-displace))
+real time : 4.546 secs
+run time  : 4.627 secs
+gc count  : 20 times
+consed    : 738207104 bytes
+#(2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1)
+
+(time (map-array-cons))
+real time : 4.966 secs
+run time  : 5.033 secs
+gc count  : 16 times
+consed    : 603980112 bytes
+#(2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1)
+
+(time (map-array-struct-alloc))
+real time : 12.307 secs
+run time  : 12.447 secs
+gc count  : 33 times
+consed    : 1207967088 bytes
+#(2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1)
+
+(time (map-array-struct-setf))
+real time : 5.770 secs
+run time  : 5.843 secs
+gc count  : 16 times
+consed    : 603983184 bytes
+#(2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1)
+
+(time (map-array-macro))
+real time : 4.319 secs
+run time  : 4.350 secs
+gc count  : 8 times
+consed    : 335547696 bytes
+#(2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1)
+
+(time (map-array-offset))
+real time : 2.443 secs
+run time  : 2.440 secs
+gc count  : 1 times
+consed    : 67108864 bytes
+#(2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1 2 3 0 1)
