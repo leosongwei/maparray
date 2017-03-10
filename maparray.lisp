@@ -80,7 +80,7 @@
       (let ((map (make-arraymap :a a :offset (* i 4))))
         (declare (type arraymap map))
         (dotimes (i 4)
-          (setf (aref (arraymap-a map) (arraymap-offset map))
+          (setf (aref (arraymap-a map) (+ (arraymap-offset map) i))
                 i))))
     (mem-array 20 a 562)))
 
